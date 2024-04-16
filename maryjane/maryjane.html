@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <h1>
+      <font color ="#CD5C5C"><u>MY BLOCKMATES</u></font>
+   </h1>
+  <title>ADET</title>
+ 
+ <style>
+    h1{
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      display: inline-block;
+      text-align:center;
+    }
+
+  .additionalOutput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family:Fantasy;
+  }
+
+  .additionalOutput img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 5px;
+  }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button {
+      padding: 10px;
+      background-color: #5d373d;
+      color: white;
+      cursor: pointer;
+      margin: 20px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #373528;
+    }
+
+    .output, .hiddenOutput {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .output img, .hiddenOutput img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 5px;
+    }
+    .hiddenOutput {
+      visibility: hidden;
+      align-items: up;
+    }
+    .additionalOutput {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .additionalOutput img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 5px;
+    }
+    body {
+    background-attachment: fixed;
+    background-size:cover;    
+   text-align: center;
+   background-image: url('R.jpg');
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <div class="hiddenOutput" id="hiddenOutput"></div>
+  <button class="button" id="boysButton">BOYS</button>
+  <div class="output" id="output"></div>
+  <button class="button" id="girlsButton">GIRLS</button>
+</div>
+<script>
+   
+  var allImages = [
+    { src: "Michael.jpeg", gender: "boy", name: "PICARDAL MICHAEL" },
+    { src: "Leode.jpg", gender: "boy", name: "QUILICOL LEODE" },
+    { src: "Angelo.jpg", gender: "boy", name: "ACUPIADO ANGELO" },
+    { src: "bella.jpg", gender: "boy", name: "LUCAPA ALFRED0" },
+    { src: "zul.jpg", gender: "boy", name: "NUGUIT ZUL" },
+    { src: "aiai.jpg", gender: "girl", name: "DISTA APRIL ROSE"},
+    { src: "Mary ann.jpg", gender: "girl", name:"SUGALAN MARYANN"},
+    { src: "wana.jpg", gender: "girl", name: "RAVAS JOANA"},
+    { src: "Je ann.jpg", gender: "girl", name: "ORGA JE ANN " },
+    { src: "Rosgie.jpg", gender: "girl", name: "ROSCO ROSGIE" }
+  ];
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  shuffleArray(allImages);
+
+  var outputDiv = document.getElementById("output");
+  var boysButton = document.getElementById("boysButton");
+  var girlsButton = document.getElementById("girlsButton");
+
+  boysButton.addEventListener("click", function() {
+    displayImage("boy");
+  });
+
+  girlsButton.addEventListener("click", function() {
+    displayImage("girl");
+  });
+
+  function displayImage(gender) {
+    
+    outputDiv.innerHTML = "";
+
+   
+    for (var i = 0; i < allImages.length; i++) {
+      if (allImages[i].gender === gender) {
+        var imageDiv = document.createElement("div");
+        var image = document.createElement("img");
+        var name = document.createElement("p");
+        
+        image.src = allImages[i].src;
+        name.textContent = allImages[i].name;
+
+        imageDiv.appendChild(image);
+        imageDiv.appendChild(name);
+        outputDiv.appendChild(imageDiv);
+
+     
+        allImages.push(allImages.splice(i, 1)[0]);
+        break;
+      }
+    }
+  }
+</script>
+</body>
+</html>
